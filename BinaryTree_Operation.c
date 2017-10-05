@@ -35,7 +35,6 @@ int countFullNodes(struct Node *);
 
 int main(){
 
-
 	struct Node *root = newNode(25);
 	root->left = newNode(15);
 	root->right = newNode(50);
