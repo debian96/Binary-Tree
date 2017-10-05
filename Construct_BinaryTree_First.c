@@ -24,7 +24,6 @@ int findlength(char []);
 
 
 int main(){
-
 	char in[100], pre[100];
 	int length;
 
