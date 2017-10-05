@@ -26,6 +26,7 @@ int findlength(char []);
 
 int main(){
 
+	
 	char in[100], post[100];
 	int length;
 
