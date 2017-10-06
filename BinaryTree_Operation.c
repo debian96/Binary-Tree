@@ -25,6 +25,8 @@ int size(struct Node *);
 int height(struct Node *);
 int countLeaveNodes(struct Node *);
 int countFullNodes(struct Node *);
+int width(struct Node *,int);
+int getWidth(struct Node *,int );
 
 
 
@@ -34,6 +36,7 @@ int countFullNodes(struct Node *);
 
 
 int main(){
+
 
 	struct Node *root = newNode(25);
 	root->left = newNode(15);
@@ -55,7 +58,7 @@ int main(){
 
 
 
-	int choice,s,h,l,f;
+	int choice,s,h,l,f,w;
 
 	while(1){
 
@@ -68,6 +71,7 @@ int main(){
                 printf("\n 6.Total No Of Leave Nodes  \n");
                 printf("\n 7.Total No Of Non Leave Nodes    \n");
                 printf("\n 8.Total No Of Full Nodes    \n");
+                printf("\n 9.Total Width Of Tree    \n");
 
 
          
@@ -106,6 +110,10 @@ int main(){
 			case 8:
 				f = countFullNodes(root);
 				printf("Total No Of Full Nodes:-\t%d\n",f);
+				break;
+			case 9:
+				w = width(root,height(root));
+				printf("Total Width Of Tree:-\t%d\n",w);
 				break;
             case 10:
                 exit(0);
@@ -191,6 +199,32 @@ int countFullNodes(struct Node *t){
 		return countFullNodes(t->left)+countFullNodes(t->right)+((t->left!=NULL && t->right!=NULL)?1:0);
 	}
 }
+
+int width(struct Node *t,int h){
+	int max_width = 0;
+	int width;
+
+
+	for (int i = 1; i <=h+1; ++i)
+	{
+		width = getWidth(t,i);
+		if (width>max_width)
+			max_width = width;
+	}
+	return max_width;
+}
+
+int getWidth(struct Node *t,int l){
+	if (t==NULL)
+	{
+		return 0;
+	}else if(l==1){
+		return 1;
+	}else if(l>1){
+		return (getWidth(t->left,l-1) + getWidth(t->right,l-1));
+	}
+}
+
 
 
 
